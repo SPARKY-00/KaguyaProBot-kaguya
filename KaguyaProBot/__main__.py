@@ -78,7 +78,8 @@ def get_readable_time(seconds: int) -> str:
 
     return ping_time
 
-#def PM_start(update: Update, context: CallbackContext):
+
+# def PM_start(update: Update, context: CallbackContext):
 #    args = context.args
 uptime_pm = get_readable_time((time.time() - StartTime))
 first_name_pm = ""
@@ -112,24 +113,23 @@ List of all the Modules:
 
 buttons = [
     [
-                        InlineKeyboardButton(
-                            text=f"Add Kaguya To Your Group",
-                            url=f"https://telegram.dog/KaguyaProBot?startgroup=true")
-                    ],
-                   [
-                       InlineKeyboardButton(text="[► Help ◄]", callback_data="help_back"),
-                       InlineKeyboardButton(text="❔ Chit Chat", url="https://t.me/AnimeChatFrozen"),
-                       InlineKeyboardButton(text="[► Inline ◄]", switch_inline_query_current_chat=""),
-                     ],
-                    [                  
-                       InlineKeyboardButton(
-                             text="🚑 Support",
-                             url=f"https://telegram.dog/ShinomiyaSupport"),
-                       InlineKeyboardButton(
-                             text="📢 Updates",
-                             url="https://t.me/ShinomiyaUpdates")
-                     ], 
-    ]
+        InlineKeyboardButton(
+            text=f"Add Kaguya To Your Group",
+            url=f"https://telegram.dog/KaguyaProBot?startgroup=true",
+        )
+    ],
+    [
+        InlineKeyboardButton(text="[► Help ◄]", callback_data="help_back"),
+        InlineKeyboardButton(text="❔ Chit Chat", url="https://t.me/AnimeChatFrozen"),
+        InlineKeyboardButton(text="[► Inline ◄]", switch_inline_query_current_chat=""),
+    ],
+    [
+        InlineKeyboardButton(
+            text="🚑 Support", url=f"https://telegram.dog/ShinomiyaSupport"
+        ),
+        InlineKeyboardButton(text="📢 Updates", url="https://t.me/ShinomiyaUpdates"),
+    ],
+]
 
 GROUP_START_IMG = "https://telegra.ph/file/a53d70bd26de174b8f1a2.mp4"
 
@@ -203,8 +203,6 @@ def test(update: Update, context: CallbackContext):
     print(update.effective_message)
 
 
-
-
 def start(update: Update, context: CallbackContext):
     args = context.args
     uptime = get_readable_time((time.time() - StartTime))
@@ -220,7 +218,13 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="[『 ⫷ Back 』]", callback_data="help_back")]]
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    text="[『 ⫷ Back 』]", callback_data="help_back"
+                                )
+                            ]
+                        ]
                     ),
                 )
 
@@ -237,23 +241,29 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            #first_name = update.effective_user.first_name
+            # first_name = update.effective_user.first_name
             update.effective_message.reply_text(
                 PM_START_TEXT.format(
                     escape_markdown(context.bot.first_name),
                     escape_markdown(update.effective_user.first_name),
                     escape_markdown(uptime),
                     sql.num_users(),
-                    sql.num_chats()),                        
+                    sql.num_chats(),
+                ),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
             )
     else:
         update.effective_message.reply_text(
-            "👋 Hi {}\nI won[']({})t sleep until I satisfy you!\n<b>Uptime:</b> <code>{}</code>.\nUptime - {}".format(update.effective_user.first_name,GROUP_START_IMG,get_readable_time((time.time() - StartTime))),
-            parse_mode=ParseMode.MARKDOWN
-       )
+            "👋 Hi {}\nI won[']({})t sleep until I satisfy you!\n<b>Uptime:</b> <code>{}</code>.\nUptime - {}".format(
+                update.effective_user.first_name,
+                GROUP_START_IMG,
+                get_readable_time((time.time() - StartTime)),
+            ),
+            parse_mode=ParseMode.MARKDOWN,
+        )
+
 
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
@@ -336,7 +346,13 @@ def help_button(update, context):
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="『 ⫷ Go Back 』", callback_data="help_back")]]
+                    [
+                        [
+                            InlineKeyboardButton(
+                                text="『 ⫷ Go Back 』", callback_data="help_back"
+                            )
+                        ]
+                    ]
                 ),
             )
 
@@ -394,20 +410,32 @@ def Kaguya_about_callback(update, context):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
-                 [
-                    InlineKeyboardButton(text="Admins", callback_data="Kaguya_admin"),
-                    InlineKeyboardButton(text="Notes", callback_data="Kaguya_notes"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Support", callback_data="ShinomiyaSupport"),
-                    InlineKeyboardButton(text="Credits", callback_data="Kaguya_credit"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Source Code", url="https://t.me/NexusXSupport"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="Kaguya_back"),
-                 ]
+                    [
+                        InlineKeyboardButton(
+                            text="Admins", callback_data="Kaguya_admin"
+                        ),
+                        InlineKeyboardButton(
+                            text="Notes", callback_data="Kaguya_notes"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Support", callback_data="ShinomiyaSupport"
+                        ),
+                        InlineKeyboardButton(
+                            text="Credits", callback_data="Kaguya_credit"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Source Code", url="https://t.me/NexusXSupport"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="Go Back", callback_data="Kaguya_back"
+                        ),
+                    ],
                 ]
             ),
         )
@@ -415,16 +443,17 @@ def Kaguya_about_callback(update, context):
         first_name = update.effective_user.first_name
         uptime = get_readable_time((time.time() - StartTime))
         query.message.edit_text(
-                PM_START_TEXT.format(
-                    escape_markdown(context.bot.first_name),
-                    escape_markdown(first_name),
-                    escape_markdown(uptime),
-                    sql.num_users(),
-                    sql.num_chats()),
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.MARKDOWN,
-                timeout=60,
-                disable_web_page_preview=False,
+            PM_START_TEXT.format(
+                escape_markdown(context.bot.first_name),
+                escape_markdown(first_name),
+                escape_markdown(uptime),
+                sql.num_users(),
+                sql.num_chats(),
+            ),
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN,
+            timeout=60,
+            disable_web_page_preview=False,
         )
 
     elif query.data == "Kaguya_admin":
@@ -462,18 +491,20 @@ def Kaguya_about_callback(update, context):
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
-                 [
-                    InlineKeyboardButton(text="Support", url="t.me/ShinomiyaSupport"),
-                    InlineKeyboardButton(text="Updates", url="https://t.me/ShinomiyaUpdates"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="Kaguya_"),
-                 
-                 ]
+                    [
+                        InlineKeyboardButton(
+                            text="Support", url="t.me/ShinomiyaSupport"
+                        ),
+                        InlineKeyboardButton(
+                            text="Updates", url="https://t.me/ShinomiyaUpdates"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(text="Go Back", callback_data="Kaguya_"),
+                    ],
                 ]
             ),
         )
-
 
     elif query.data == "Kaguya_credit":
         query.message.edit_text(
@@ -482,19 +513,24 @@ def Kaguya_about_callback(update, context):
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
                 [
-		 [
-                    InlineKeyboardButton(text="Husbando", url="https://t.me/Husbandoo"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Zoro", url="https://t.me/Aceladi"),
-                    InlineKeyboardButton(text="Xelcius", url="https://t.me/Xelcius"),
-                 ],
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="Kaguya_"),
-                 ]
+                    [
+                        InlineKeyboardButton(
+                            text="Husbando", url="https://t.me/Husbandoo"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(text="Zoro", url="https://t.me/Aceladi"),
+                        InlineKeyboardButton(
+                            text="Xelcius", url="https://t.me/Xelcius"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(text="Go Back", callback_data="Kaguya_"),
+                    ],
                 ]
             ),
         )
+
 
 def Source_about_callback(update, context):
     query = update.callback_query
@@ -514,26 +550,24 @@ def Source_about_callback(update, context):
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
-                [
-                 [
-                    InlineKeyboardButton(text="Go Back", callback_data="Kaguya_")
-                 ]
-                ]
+                [[InlineKeyboardButton(text="Go Back", callback_data="Kaguya_")]]
             ),
         )
     elif query.data == "source_back":
         first_name = update.effective_user.first_name
         query.message.edit_text(
-                PM_START_TEXT.format(
-                    escape_markdown(first_name),
-                    escape_markdown(uptime),
-                    sql.num_users(),
-                    sql.num_chats()),
-                reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.MARKDOWN,
-                timeout=60,
-                disable_web_page_preview=False,
+            PM_START_TEXT.format(
+                escape_markdown(first_name),
+                escape_markdown(uptime),
+                sql.num_users(),
+                sql.num_chats(),
+            ),
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN,
+            timeout=60,
+            disable_web_page_preview=False,
         )
+
 
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -806,8 +840,9 @@ def main():
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
             dispatcher.bot.sendMessage(
-                f"@{SUPPORT_CHAT}", "やあ Kon'nichiwa Baka! , Am Kaguya Shinomiya and I'll protect you from everything ✿ [.](https://telegra.ph/file/a53d70bd26de174b8f1a2.mp4)"
-	    )
+                f"@{SUPPORT_CHAT}",
+                "やあ Kon'nichiwa Baka! , Am Kaguya Shinomiya and I'll protect you from everything ✿ [.](https://telegra.ph/file/a53d70bd26de174b8f1a2.mp4)",
+            )
         except Unauthorized:
             LOGGER.warning(
                 "Bot isnt able to send message to support_chat, go and check!"
@@ -816,7 +851,7 @@ def main():
             LOGGER.warning(e.message)
 
     test_handler = CommandHandler("test", test, run_async=True)
-    start_handler = CommandHandler("start", start, run_async=True) 
+    start_handler = CommandHandler("start", start, run_async=True)
     help_handler = CommandHandler("help", get_help, run_async=True)
     help_callback_handler = CallbackQueryHandler(
         help_button, pattern=r"help_.*", run_async=True
@@ -841,7 +876,7 @@ def main():
     )
 
     dispatcher.add_handler(test_handler)
-    #dispatcher.add_handler(check_handler)
+    # dispatcher.add_handler(check_handler)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
     dispatcher.add_handler(about_callback_handler)

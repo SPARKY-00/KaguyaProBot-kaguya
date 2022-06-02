@@ -29,7 +29,7 @@ from KaguyaProBot import REM_BG_API_KEY
 from KaguyaProBot.events import register
 from KaguyaProBot import telethn as tbot
 
-#REM_BG_API_KEY = "REM_BG_API_KEY"
+# REM_BG_API_KEY = "REM_BG_API_KEY"
 TEMP_DOWNLOAD_DIRECTORY = "./"
 
 

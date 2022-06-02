@@ -15,12 +15,15 @@ url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
 
 translator = google_translator()
 
+
 async def lunaQuery(query: str, user_id: int):
     luna = await arq.luna(query, user_id)
     return luna.result
 
+
 def extract_emojis(s):
     return "".join(c for c in s if c in emoji.UNICODE_EMOJI)
+
 
 async def fetch(url):
     try:
@@ -36,10 +39,17 @@ async def fetch(url):
         print("AI response Timeout")
         return
 
+
 ewe_chats = []
 en_chats = []
 
-@pbot.on_message(filters.command(["chatbot", f"chatbot@{bu}"]) & ~filters.edited & ~filters.bot & ~filters.private)
+
+@pbot.on_message(
+    filters.command(["chatbot", f"chatbot@{bu}"])
+    & ~filters.edited
+    & ~filters.bot
+    & ~filters.private
+)
 @admins_only
 async def hmm(_, message):
     global ewe_chats
@@ -54,7 +64,9 @@ async def hmm(_, message):
         if not lol:
             await lel.edit("Kaguya's AI Already Activated In This Chat")
             return
-        await lel.edit(f"Kaguya's AI Actived by {message.from_user.mention()} for users in {message.chat.title}")
+        await lel.edit(
+            f"Kaguya's AI Actived by {message.from_user.mention()} for users in {message.chat.title}"
+        )
 
     elif status == "OFF" or status == "off" or status == "Off":
         lel = await edit_or_reply(message, "`Processing...`")
@@ -62,17 +74,25 @@ async def hmm(_, message):
         if not Escobar:
             await lel.edit("Kaguya's AI Was Not Activated In This Chat")
             return
-        await lel.edit(f"Kaguya's AI Deactivated by {message.from_user.mention()} for users in {message.chat.title}")
+        await lel.edit(
+            f"Kaguya's AI Deactivated by {message.from_user.mention()} for users in {message.chat.title}"
+        )
 
     elif status == "EN" or status == "en" or status == "english":
         if not chat_id in en_chats:
             en_chats.append(chat_id)
-            await message.reply_text(f"English AI chat Enabled by {message.from_user.mention()}")
+            await message.reply_text(
+                f"English AI chat Enabled by {message.from_user.mention()}"
+            )
             return
-        await message.reply_text(f"English AI Chat Disabled by {message.from_user.mention()}")
+        await message.reply_text(
+            f"English AI Chat Disabled by {message.from_user.mention()}"
+        )
         message.continue_propagation()
     else:
-        await message.reply_text("I only recognize `/chatbot on` and `chatbot off` only")
+        await message.reply_text(
+            "I only recognize `/chatbot on` and `chatbot off` only"
+        )
 
 
 @pbot.on_message(
@@ -103,20 +123,26 @@ async def hmm(client, message):
         test = msg
         test = test.replace("Kaguya", "Aco")
         test = test.replace("Kaguya", "Aco")
-        test = test.replace("My god is @Husbandoo", "I'm a 500 years old Arcane Stage Mage.")
+        test = test.replace(
+            "My god is @Husbandoo", "I'm a 500 years old Arcane Stage Mage."
+        )
         test = test.replace("16", "9")
         test = test.replace("@Husbandoo is my husband.", "I'm single.")
         test = test.replace("My husband is @Husbandoo", "I'm single.")
         test = test.replace("@ShinomiyaSupport", "KaguyaBot.ai")
         test = test.replace("I live in @ShinomiyaSupport.", "I live in Clover Kingdom.")
-        test = test.replace("I was created by @yameteee_yamete_kudasai", "I made myself")
+        test = test.replace(
+            "I was created by @yameteee_yamete_kudasai", "I made myself"
+        )
         test = test.replace(
             "Hello there I am Kaguya...nice to meet u",
-            "Hi, my friend! Do you want me to tell you a joke?")
+            "Hi, my friend! Do you want me to tell you a joke?",
+        )
         test = test.replace("@Husbandoo is my owner", "Have the control right.")
         test = test.replace(
             "Hi, My name is Kaguya, Nice to meet you.",
-            "Hi, my friend, what can I do for you today?")
+            "Hi, my friend, what can I do for you today?",
+        )
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
@@ -126,18 +152,26 @@ async def hmm(client, message):
         response = response.replace("luna", "Kaguya")
         response = response.replace("I'm a Christian", "My god is @Husbandoo")
         response = response.replace("9", "16")
-        response = response.replace("I'm married to my job.", "I'm married with @Husbandoo")
+        response = response.replace(
+            "I'm married to my job.", "I'm married with @Husbandoo"
+        )
         response = response.replace("I'm single.", "My husband is @Husbandoo")
         response = response.replace("KaguyaBot.ai", "@ShinomiyaSupport")
-        response = response.replace("I live in Clover Kingdom.", "I live in @ShinomiyaSupport.")
+        response = response.replace(
+            "I live in Clover Kingdom.", "I live in @ShinomiyaSupport."
+        )
         response = response.replace("I made myself", "I was Created by @Husbandoo")
         response = response.replace(
-                "Hi, my friend! Do you want me to tell you a joke?",
-                "Hello there I am Kaguya...nice to meet u")
-        response = response.replace("Have the control right.", "@Husbandoo is my owner.")
+            "Hi, my friend! Do you want me to tell you a joke?",
+            "Hello there I am Kaguya...nice to meet u",
+        )
         response = response.replace(
-                "Hi, my friend, what can I do for you today?",
-                "Hi, My name is Kaguya, Nice to meet you")
+            "Have the control right.", "@Husbandoo is my owner."
+        )
+        response = response.replace(
+            "Hi, my friend, what can I do for you today?",
+            "Hi, My name is Kaguya, Nice to meet you",
+        )
 
         pro = response
         try:
@@ -191,7 +225,9 @@ async def hmm(client, message):
 
         test = test.replace("Kaguya", "Aco")
         test = test.replace("Kaguya", "Aco")
-        test = test.replace("My god is @Husbandoo", "I'm a 500 years old Arcane Stage Mage")
+        test = test.replace(
+            "My god is @Husbandoo", "I'm a 500 years old Arcane Stage Mage"
+        )
         test = test.replace("16", "9")
         test = test.replace("@Husbandoo is my husband.", "I'm single.")
         test = test.replace("@ShinomiyaSupport", "KaguyaBot.ai")
@@ -199,11 +235,13 @@ async def hmm(client, message):
         test = test.replace("I was created by @Husbandoo", "I made myself")
         test = test.replace(
             "Hello there I am Kaguya...nice to meet u",
-            "Hi, my friend! Do you want me to tell you a joke?")
+            "Hi, my friend! Do you want me to tell you a joke?",
+        )
         test = test.replace("@Husbandoo is my owner", "Have the control right.")
         test = test.replace(
             "Hi, My name is Kaguya, Nice to meet you.",
-            "Hi, my friend, what can I do for you today?")
+            "Hi, my friend, what can I do for you today?",
+        )
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
@@ -213,18 +251,26 @@ async def hmm(client, message):
         response = response.replace("luna", "Kaguya")
         response = response.replace("I'm a Christian", "My god is @Husbandoo")
         response = response.replace("9", "16")
-        response = response.replace("I'm married to my job.", "I'm married with @Husbandoo")
+        response = response.replace(
+            "I'm married to my job.", "I'm married with @Husbandoo"
+        )
         response = response.replace("I'm single.", "My husband is @Husbandoo")
         response = response.replace("KaguyaBot.ai", "@ShinomiyaSupport")
-        response = response.replace("I live in Clover Kingdom.", "I live in @ShinomiyaSupport.")
+        response = response.replace(
+            "I live in Clover Kingdom.", "I live in @ShinomiyaSupport."
+        )
         response = response.replace("I made myself", "I was Created by @Husbandoo")
         response = response.replace(
-                "Hi, my friend! Do you want me to tell you a joke?",
-                "Hello there I am Kaguya...nice to meet u")
-        response = response.replace("Have the control right.", "@Husbandoo is my owner.")
+            "Hi, my friend! Do you want me to tell you a joke?",
+            "Hello there I am Kaguya...nice to meet u",
+        )
         response = response.replace(
-                "Hi, my friend, what can I do for you today?",
-                "Hi, My name is Kaguya, Nice to meet you")
+            "Have the control right.", "@Husbandoo is my owner."
+        )
+        response = response.replace(
+            "Hi, my friend, what can I do for you today?",
+            "Hi, My name is Kaguya, Nice to meet you",
+        )
         pro = response
         if not "en" in lan and not lan == "":
             try:
@@ -239,7 +285,9 @@ async def hmm(client, message):
             return
 
 
-@pbot.on_message(filters.text & filters.private & ~filters.edited & filters.reply & ~filters.bot)
+@pbot.on_message(
+    filters.text & filters.private & ~filters.edited & filters.reply & ~filters.bot
+)
 async def inuka(client, message):
     msg = message.text
     if msg.startswith("/") or msg.startswith("@"):
@@ -286,7 +334,9 @@ async def inuka(client, message):
             return
         test = test.replace("Kaguya", "Aco")
         test = test.replace("Kaguya", "Aco")
-        test = test.replace("My god is @Husbandoo", "I'm a 500 years old Arcane Stage Mage")
+        test = test.replace(
+            "My god is @Husbandoo", "I'm a 500 years old Arcane Stage Mage"
+        )
         test = test.replace("16", "9")
         test = test.replace("@Husbandoo is my husband.", "I'm single.")
         test = test.replace("@ShinomiyaSupport", "KaguyaBot.ai")
@@ -294,11 +344,13 @@ async def inuka(client, message):
         test = test.replace("I was created by @Husbandoo", "I made myself")
         test = test.replace(
             "Hello there I am Kaguya...nice to meet u",
-            "Hi, my friend! Do you want me to tell you a joke?")
+            "Hi, my friend! Do you want me to tell you a joke?",
+        )
         test = test.replace("@Husbandoo is my owner", "Have the control right.")
         test = test.replace(
             "Hi, My name is Kaguya, Nice to meet you.",
-            "Hi, my friend, what can I do for you today?")
+            "Hi, my friend, what can I do for you today?",
+        )
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
@@ -308,18 +360,26 @@ async def inuka(client, message):
         response = response.replace("luna", "Kaguya")
         response = response.replace("I'm a Christian", "My god is @Husbandoo")
         response = response.replace("9", "16")
-        response = response.replace("I'm married to my job.", "I'm married with @Husbandoo")
+        response = response.replace(
+            "I'm married to my job.", "I'm married with @Husbandoo"
+        )
         response = response.replace("I'm single.", "My husband is @Husbandoo")
         response = response.replace("KaguyaBot.ai", "@ShinomiyaSupport")
-        response = response.replace("I live in Clover Kingdom.", "I live in @ShinomiyaSupport.")
+        response = response.replace(
+            "I live in Clover Kingdom.", "I live in @ShinomiyaSupport."
+        )
         response = response.replace("I made myself", "I was Created by @Husbandoo")
         response = response.replace(
-                "Hi, my friend! Do you want me to tell you a joke?",
-                "Hello there I am Kaguya...nice to meet u")
-        response = response.replace("Have the control right.", "@Husbandoo is my owner.")
+            "Hi, my friend! Do you want me to tell you a joke?",
+            "Hello there I am Kaguya...nice to meet u",
+        )
         response = response.replace(
-                "Hi, my friend, what can I do for you today?",
-                "Hi, My name is Kaguya, Nice to meet you")
+            "Have the control right.", "@Husbandoo is my owner."
+        )
+        response = response.replace(
+            "Hi, my friend, what can I do for you today?",
+            "Hi, My name is Kaguya, Nice to meet you",
+        )
 
     pro = response
     if not "en" in lan and not lan == "":
@@ -332,7 +392,15 @@ async def inuka(client, message):
         return
 
 
-@pbot.on_message(filters.regex("Kaguya|Kaguya|robot|Kaguya|Secre|secre|SECRE|Naruto|naruto") & ~filters.bot & ~filters.via_bot  & ~filters.forwarded & ~filters.reply & ~filters.channel & ~filters.edited)
+@pbot.on_message(
+    filters.regex("Kaguya|Kaguya|robot|Kaguya|Secre|secre|SECRE|Naruto|naruto")
+    & ~filters.bot
+    & ~filters.via_bot
+    & ~filters.forwarded
+    & ~filters.reply
+    & ~filters.channel
+    & ~filters.edited
+)
 async def inuka(client, message):
     msg = message.text
     if msg.startswith("/") or msg.startswith("@"):
@@ -378,11 +446,13 @@ async def inuka(client, message):
         except:
             return
 
-    # test = emoji.demojize(test.strip())
+        # test = emoji.demojize(test.strip())
 
         test = test.replace("Kaguya", "Aco")
         test = test.replace("Kaguya", "Aco")
-        test = test.replace("My god is @Husbandoo", "I'm a 500 years old Arcane Stage Mage")
+        test = test.replace(
+            "My god is @Husbandoo", "I'm a 500 years old Arcane Stage Mage"
+        )
         test = test.replace("16", "9")
         test = test.replace("@Husbandoo is my husband.", "I'm single.")
         test = test.replace("@ShinomiyaSupport", "KaguyaBot.ai")
@@ -390,11 +460,13 @@ async def inuka(client, message):
         test = test.replace("I was created by @Husbandoo", "I made myself")
         test = test.replace(
             "Hello there I am Kaguya...nice to meet u",
-            "Hi, my friend! Do you want me to tell you a joke?")
+            "Hi, my friend! Do you want me to tell you a joke?",
+        )
         test = test.replace("@Husbandoo is my owner", "Have the control right.")
         test = test.replace(
             "Hi, My name is Kaguya, Nice to meet you.",
-            "Hi, my friend, what can I do for you today?")
+            "Hi, my friend, what can I do for you today?",
+        )
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
@@ -404,18 +476,26 @@ async def inuka(client, message):
         response = response.replace("luna", "Kaguya")
         response = response.replace("I'm a Christian", "My god is @Husbandoo")
         response = response.replace("9", "16")
-        response = response.replace("I'm married to my job.", "I'm married with @Husbandoo")
+        response = response.replace(
+            "I'm married to my job.", "I'm married with @Husbandoo"
+        )
         response = response.replace("I'm single.", "My husband is @Husbandoo")
         response = response.replace("KaguyaBot.ai", "@ShinomiyaSupport")
-        response = response.replace("I live in Clover Kingdom.", "I live in @ShinomiyaSupport.")
+        response = response.replace(
+            "I live in Clover Kingdom.", "I live in @ShinomiyaSupport."
+        )
         response = response.replace("I made myself", "I was Created by @Husbandoo")
         response = response.replace(
-                "Hi, my friend! Do you want me to tell you a joke?",
-                "Hello there I am Kaguya...nice to meet u")
-        response = response.replace("Have the control right.", "@Husbandoo is my owner.")
+            "Hi, my friend! Do you want me to tell you a joke?",
+            "Hello there I am Kaguya...nice to meet u",
+        )
         response = response.replace(
-                "Hi, my friend, what can I do for you today?",
-                "Hi, My name is Kaguya, Nice to meet you")
+            "Have the control right.", "@Husbandoo is my owner."
+        )
+        response = response.replace(
+            "Hi, my friend, what can I do for you today?",
+            "Hi, My name is Kaguya, Nice to meet you",
+        )
 
     pro = response
     if not "en" in lan and not lan == "":
