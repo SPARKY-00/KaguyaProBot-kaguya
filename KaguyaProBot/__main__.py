@@ -403,7 +403,7 @@ def Kaguya_about_callback(update, context):
                     InlineKeyboardButton(text="Credits", callback_data="Kaguya_credit"),
                  ],
                  [
-                    InlineKeyboardButton(text="Source Code", url="https://github.com/DarkSoulxUltra/KaguyaBot"),
+                    InlineKeyboardButton(text="Source Code", url="https://t.me/NexusXSupport"),
                  ],
                  [
                     InlineKeyboardButton(text="Go Back", callback_data="Kaguya_back"),
@@ -483,11 +483,11 @@ def Kaguya_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
 		 [
-                    InlineKeyboardButton(text="Shoto", url="https://github.com/DarkSoulxUltra"),
+                    InlineKeyboardButton(text="Husbando", url="https://t.me/Husbandoo"),
                  ],
                  [
-                    InlineKeyboardButton(text="sena-ex", url="https://github.com/kennedy-ex"),
-                    InlineKeyboardButton(text="TheHamkerCat", url="https://github.com/TheHamkerCat"),
+                    InlineKeyboardButton(text="Zoro", url="https://t.me/Aceladi"),
+                    InlineKeyboardButton(text="Xelcius", url="https://t.me/Xelcius"),
                  ],
                  [
                     InlineKeyboardButton(text="Go Back", callback_data="Kaguya_"),
@@ -806,7 +806,7 @@ def main():
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
             dispatcher.bot.sendMessage(
-                f"@{SUPPORT_CHAT}", "やあ Kon'nichiwa Baka! , Am Kaguya Shinomiya and I'll protect you from everything ✿ [.](https://telegra.ph/file/a53d70bd26de174b8f1a2.mp4),
+                f"@{SUPPORT_CHAT}", "やあ Kon'nichiwa Baka! , Am Kaguya Shinomiya and I'll protect you from everything ✿ [.](https://telegra.ph/file/a53d70bd26de174b8f1a2.mp4)"
                 parse_mode=ParseMode.MARKDOWN
             )
         except Unauthorized:
