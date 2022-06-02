@@ -807,8 +807,7 @@ def main():
         try:
             dispatcher.bot.sendMessage(
                 f"@{SUPPORT_CHAT}", "やあ Kon'nichiwa Baka! , Am Kaguya Shinomiya and I'll protect you from everything ✿ [.](https://telegra.ph/file/a53d70bd26de174b8f1a2.mp4)"
-                parse_mode=ParseMode.MARKDOWN
-            )
+	    )
         except Unauthorized:
             LOGGER.warning(
                 "Bot isnt able to send message to support_chat, go and check!"
