@@ -22,9 +22,11 @@ from ptbcontrib.postgres_persistence import PostgresPersistence
 
 StartTime = time.time()
 
+
 def get_user_list(__init__, key):
     with open("{}/KaguyaBot/{}".format(os.getcwd(), __init__), "r") as json_file:
         return json.load(json_file)[key]
+
 
 # enable logging
 FORMAT = "[KaguyaBot] %(message)s"
@@ -35,9 +37,11 @@ logging.basicConfig(
     datefmt="[%X]",
 )
 logging.getLogger("pyrogram").setLevel(logging.INFO)
-logging.getLogger('ptbcontrib.postgres_persistence.postgrespersistence').setLevel(logging.WARNING)
+logging.getLogger("ptbcontrib.postgres_persistence.postgrespersistence").setLevel(
+    logging.WARNING
+)
 
-LOGGER = logging.getLogger('[KaguyaBot]')
+LOGGER = logging.getLogger("[KaguyaBot]")
 LOGGER.info("Kaguya is starting. | Licensed under GPLv3.")
 LOGGER.info("Not affiliated to other anime or Villain in any way whatsoever.")
 LOGGER.info("Project maintained by: github.com/Husbandoo (t.me/Husbandoo)")
@@ -61,9 +65,15 @@ if ENV:
 
     JOIN_LOGGER = os.environ.get("JOIN_LOGGER", None)
     OWNER_USERNAME = os.environ.get("OWNER_USERNAME", None)
-    REQUEST_CHAT_ID = os.environ.get("REQUEST_CHAT_ID", None) #Added by @yameteee_yamete_kudasai ### Note : you can add this var to Heroku if you need /request <anime name> command to work, any id mentioned here will get the requests of this command.
-    SUPPORT_CHAT_ID = os.environ.get("SUPPORT_CHAT_ID", None) #Added by @yameteee_yamete_kudasai ### Note : Add some support bug channel ID, so /bug <bug details> will be targeted there.
-    ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None) #Some fool had hardcoded this thing, use your own ARQ bruh, I won't give mine - @yameteee_yamete_kudasai
+    REQUEST_CHAT_ID = os.environ.get(
+        "REQUEST_CHAT_ID", None
+    )  # Added by @yameteee_yamete_kudasai ### Note : you can add this var to Heroku if you need /request <anime name> command to work, any id mentioned here will get the requests of this command.
+    SUPPORT_CHAT_ID = os.environ.get(
+        "SUPPORT_CHAT_ID", None
+    )  # Added by @yameteee_yamete_kudasai ### Note : Add some support bug channel ID, so /bug <bug details> will be targeted there.
+    ARQ_API_KEY = os.environ.get(
+        "ARQ_API_KEY", None
+    )  # Some fool had hardcoded this thing, use your own ARQ bruh, I won't give mine - @yameteee_yamete_kudasai
     try:
         DRAGONS = {int(x) for x in os.environ.get("DRAGONS", "").split()}
         DEV_USERS = {int(x) for x in os.environ.get("DEV_USERS", "").split()}
@@ -77,7 +87,7 @@ if ENV:
 
     try:
         WOLVES = {int(x) for x in os.environ.get("WOLVES", "").split()}
-    except ValueError: 
+    except ValueError:
         raise Exception("Your whitelisted users list does not contain valid integers.")
 
     try:
@@ -149,7 +159,7 @@ else:
         raise Exception("Your OWNER_ID variable is not a valid integer.")
 
     JOIN_LOGGER = Config.JOIN_LOGGER
-    #REQUEST_CHAT_ID = "-1001579527651" #Do not hardcode like this, it was not necessary Teehee.
+    # REQUEST_CHAT_ID = "-1001579527651" #Do not hardcode like this, it was not necessary Teehee.
     OWNER_USERNAME = Config.OWNER_USERNAME
     ALLOW_CHATS = Config.ALLOW_CHATS
     try:
@@ -261,6 +271,7 @@ pbot = Client(
 apps = []
 apps.append(pbot)
 loop = asyncio.get_event_loop()
+
 
 async def get_entity(client, entity):
     entity_client = client

@@ -9,7 +9,7 @@ from KaguyaProBot import (
     TIGERS,
     WOLVES,
     dispatcher,
-) 
+)
 from KaguyaProBot.modules.helper_funcs.chat_status import dev_plus
 from KaguyaProBot.modules.helper_funcs.extraction import (
     extract_user,

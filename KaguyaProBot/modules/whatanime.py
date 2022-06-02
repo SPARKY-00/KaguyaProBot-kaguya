@@ -96,6 +96,7 @@ def is_gif(file):
         return False
     return DocumentAttributeAnimated() in getattr(file, "document", file).attributes
 
+
 __help__ = """
 
 /whatanime :- Please reply to a Gif or Photo or Video,
